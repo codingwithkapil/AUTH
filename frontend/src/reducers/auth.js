@@ -41,6 +41,7 @@ export default function(state = initialState, action) {
         case FACEBOOK_AUTH_SUCCESS:
             localStorage.setItem('access', payload.access);
             localStorage.setItem('refresh', payload.refresh);
+            localStorage.setItem('saved', new Date().getTime())
             return {
                 ...state,
                 isAuthenticated: true,
@@ -58,11 +59,15 @@ export default function(state = initialState, action) {
                 user: payload
             }
         case AUTHENTICATED_FAIL:
+            localStorage.removeItem('access');
+            localStorage.removeItem('refresh');
             return {
                 ...state,
                 isAuthenticated: false
             }
         case USER_LOADED_FAIL:
+            localStorage.removeItem('access');
+            localStorage.removeItem('refresh');
             return {
                 ...state,
                 user: null

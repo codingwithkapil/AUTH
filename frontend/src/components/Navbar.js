@@ -2,6 +2,8 @@ import React, { Fragment, useState } from 'react';
 import { Link, Redirect } from 'react-router-dom';
 import { connect } from 'react-redux';
 import { logout } from '../actions/auth';
+import HeaderPrimary from './header/headerPrimary';
+import HeaderPopup from './header/headerPopup';
 
 const Navbar = ({ logout, isAuthenticated }) => {
     const [redirect, setRedirect] = useState(false);
@@ -30,8 +32,9 @@ const Navbar = ({ logout, isAuthenticated }) => {
 
     return (
         <Fragment>
+            <HeaderPopup /> {/* Limited Offer PopUP on top */}
             <nav className='navbar navbar-expand-lg navbar-light bg-light'>
-                <Link className='navbar-brand' to='/'>Auth System</Link>
+                <Link className='navbar-brand' to='/'>GuideBucket</Link>
                 <button 
                     className='navbar-toggler' 
                     type='button' 
